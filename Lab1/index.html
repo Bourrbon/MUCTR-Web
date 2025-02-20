@@ -3,6 +3,7 @@
 	<head>
 		<title>Сайт к лаб. №1</title>
 		<meta charset="UTF-8">
+		<link rel="icon" type="image/x-icon" href="https://static.doomworld.com/monthly_2022_10/wise.jpg.661c25519eb97d8d5f1c28413177a0c8.jpg">
 		
 		<style>
 			body {
@@ -10,6 +11,31 @@
 				font-family: 'Arial';
 			}
 			
+			.main {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				border: 1px solid #ddd;
+				margin: 20px;
+			}
+			
+			h1 {
+				color: #000000;
+				text-shadow: 5px 5px 3px #ddd;
+			}
+			
+			h1:hover {
+				color: #ffffff;
+				text-shadow: 5px 5px 3px #e88e8e;
+			}
+			ul pre {
+				font-family: 'Arial';
+			}
+			
+			li {
+				margin-bottom: 20px;
+			}
+		
 			a {
 				text-color: solid black;
 				text-decoration: none;
@@ -32,7 +58,6 @@
 			
 			caption {
 				font-weight: 800;
-				
 			}
 			
 			tr {
@@ -60,53 +85,82 @@
 				width: auto;
 				text-align: justify;
 			}
+			
+			img {
+				width: 300px;
+				height: auto;
+				border: 3px solid #ddd;
+				border-radius: 20px;
+				margin: 20px;
+				opacity: 0;
+			}
+			
+			img:hover {
+				opacity: 1;
+				transition: 0.5s;
+			}
+						
+			li { 
+			  font-size: 1em; 
+			  -webkit-transition: all .5s ease;
+			  -moz-transition: all .5s ease;
+			  transition: all 1.5s ease;
+			}
+
+			li:hover {
+				font-size: 2em; 
+				color: #0000dd;
+			}
 		</style>
 	</head>
 
 	<body>
-		<div class="facts-list">
-			<h1>Факты обо мне</h1>
-			<ul>
-				<li>Факт 1</li>
-				<li>Факт 2</li>
-				<li>Факт 3</li>
-				<li>Факт 4</li>
-				<li>Факт 5</li>
-			</ul>
-		</div>
-		
-		<h1>Обзор фильма</h1>
-		<div class="movie-review">
-			<p>
-				Какой-то текст с обзором фильма на IMDB.
-			</p>
-		</div>
-		
-		<h1>Цитаты из фильмов</h1>
-		<div class="quotes-list">
-			<blockquote><q>Дело вовсе не в деньгах, главное чтобы дошёл смысл послания — что всё сгорит.</q><br> — <a href="https://www.kinopoisk.ru/film/111543">Тёмный Рыцарь (2008)</a></blockquote>
-			<blockquote><q>Первое правило Бойцовского клуба: никому не рассказывать о Бойцовском клубе.</q><br> — <a href="https://www.kinopoisk.ru/film/361">Бойцовский Клуб (1999)</a></blockquote>
-			<blockquote><q>I'll be back.</q><br> — <a href="https://www.kinopoisk.ru/film/507">Терминатор (1984)</a></blockquote>
-			<blockquote><q>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</q><br> — <a href="https://www.kinopoisk.ru/film/72556">Фауст (немое кино) (1926)</a></blockquote>
-			<blockquote><cite>Какая-то цитата из фильма 5</cite> — фильм 5</blockquote>
-		</div>
-		
-		<h1>Таблица расписания АПЛ</h1>
-		<table>
-			<caption>Расписание АПЛ</caption>
-			<tr>
-				<th>Позиция на 13.02 3:47</th>
-				<th>Команда</th>
-			</tr>
-			<tr>
-				<td>13</td>
-				<td>Манчестер Юнайтед</td>
-			</tr>
+		<div class="main">
+			<div class="facts-list">
+				<h1>Интересные факты</h1>
+				<ul>
+					<li>Если навести мышку на пункты этого списка, они увеличатся.</li>
+					<li>Если съесть полкило миндаля, можно отравиться цианидом.</li>
+					<li><pre>Французский писатель Жорж Перек написал целый роман, не используя букву E. Жильбер Адэр перевел его на английский язык, не используя букву E. 
+Перек написал следующий роман, Les revenentes, в котором используется только гласная буква E.</pre></li>
+					<li>Покупателем взрывчатых веществ № 1 в мире являются военные США. № 2 — Дисней.</li>
+					<li>До изобретения лампочки люди спали в среднем около 10 часов каждую ночь. Но вставали пару раз за ночь, чтобы растопить печь.</li>
+					<li><pre>Можно умереть если съесть печень белого медведя. Все потому, что суточная норма витамина А для человека составляет 800-900 мкг, 
+а в 100 граммах печени содержится 400 000 мкг. Если медведь съест твою печень, ты тоже умрешь.</pre></li>
+					
+				</ul>
+			</div>
+			
+			<h1>Обзор фильма/сериала</h1>
+			<div class="movie-review">
+				<p>
+					Недавно я посмотрел первый сезон экранизации The Last of US. Впечатления можно кратко описать так:<br>
+					<img class="review-image" src= "https://leonardo.osnova.io/9a74bd21-d41a-5d15-93ba-9e25d2506bcf/-/scale_crop/592x/-/format/webp/"
+					alt="Movie review image">
+				</p>
+			</div>
+			
+			<h1>Цитаты из фильмов</h1>
+			<div class="quotes-list">
+				<blockquote><q>Первое правило Бойцовского клуба: никому не рассказывать о Бойцовском клубе.</q><br> — <a href="https://www.kinopoisk.ru/film/361">Бойцовский Клуб (1999)</a></blockquote>
+				<blockquote><q>Лишь утратив всё до конца, мы обретаем свободу.</q><br> — <a href="https://www.kinopoisk.ru/film/361">Бойцовский Клуб (1999)</a></blockquote>
+				<blockquote><q>Мы встретились в странный период моей жизни.</q><br> — <a href="https://www.kinopoisk.ru/film/361">Бойцовский Клуб (1999)</a></blockquote>
 
-		</table>
+			</div>
+			
+			<h1>Таблица расписания АПЛ</h1>
+			<table>
+				<caption>Расписание АПЛ</caption>
+				<tr>
+					<th>Позиция на 13.02 3:47</th>
+					<th>Команда</th>
+				</tr>
+				<tr>
+					<td>13</td>
+					<td>Манчестер Юнайтед</td>
+				</tr>
 
+			</table>
+		</div>
 	</body>
-
-	<footer>
-	</footer>
 </html>
