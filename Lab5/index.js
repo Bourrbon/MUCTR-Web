@@ -1,7 +1,7 @@
-// Глобальная переменная для режима редактирования
+// Глобальная переменная для хранения того, находимся ли мы в режиме редактирования
 let editMode = false;
 
-// Базовый класс Block
+// Базовый шаблоный класс Block
 class Block {
     constructor(id, data) {
         this.id = id;
@@ -32,8 +32,8 @@ class Block {
         }
     }
 }
+// Блок хранения аватарки персонажа
 
-// Класс для блока аватарки
 class AvatarBlock extends Block {
     render() {
         return `
@@ -45,7 +45,7 @@ class AvatarBlock extends Block {
     }
 
     getContent() {
-        const avatarSrc = this.data.avatar || 'https://via.placeholder.com/150';
+        const avatarSrc = this.data.avatar || '';
         return `
             <h2>Аватар персонажа</h2>
             <img src="${avatarSrc}" alt="Аватар персонажа">
@@ -54,7 +54,7 @@ class AvatarBlock extends Block {
     }
 }
 
-// Класс для блока информации о персонаже
+// Инфомация о персонаже
 class CharacterInfoBlock extends Block {
     getContent() {
         return `
@@ -66,7 +66,7 @@ class CharacterInfoBlock extends Block {
     }
 }
 
-// Класс для блока характеристик
+// Характеристики
 class StatsBlock extends Block {
     getContent() {
         let content = `<h2>Характеристики</h2>`;
@@ -77,7 +77,7 @@ class StatsBlock extends Block {
     }
 }
 
-// Класс для блока инвентаря
+// Инвентарь
 class InventoryBlock extends Block {
     getContent() {
         let content = `<h2>Инвентарь</h2><ul>`;
@@ -93,7 +93,7 @@ class InventoryBlock extends Block {
     }
 }
 
-// Класс для блока кибер-имплантов
+// Кибер-импланты
 class CyberImplantsBlock extends Block {
     getContent() {
         let content = `<h2>Кибер-импланты</h2><ul>`;
@@ -109,7 +109,6 @@ class CyberImplantsBlock extends Block {
     }
 }
 
-// Функция для создания нового блока
 function createBlock(type, id) {
     switch (type) {
         case 'avatar':
@@ -144,7 +143,7 @@ function renderHeader() {
     bindEvents(); // Привязываем события после рендеринга
 }
 
-// Функция для загрузки блоков из localStorage
+// Загрузка блоков из localStorage
 function loadBlocks() {
     const savedBlocks = localStorage.getItem('blocks');
     if (savedBlocks) {
@@ -157,7 +156,7 @@ function loadBlocks() {
             return block;
         }).filter(block => block !== null);
     } else {
-        // Инициализация по умолчанию, если ничего не сохранено
+        // По умолчанию, если ничего не сохранено
         blocks = [
             new AvatarBlock('avatar-block', { avatar: null }),
             new CharacterInfoBlock('info-block', { name: 'Джонни Сильверхенд', role: 'Рокер', age: '32' }),
@@ -168,7 +167,7 @@ function loadBlocks() {
     }
 }
 
-// Функция для сохранения структуры блоков в localStorage
+// Сохранение структуры блоков в localStorage
 function saveBlocks() {
     const blockData = blocks.map(block => {
         let type = block.constructor.name.toLowerCase().replace('block', '');
@@ -183,12 +182,14 @@ function saveBlocks() {
     localStorage.setItem('blocks', JSON.stringify(blockData));
 }
 
-// Функция для добавления нового блока
+
 function addNewBlock() {
     if (!editMode) return;
+	// Список доступных для создания блоков
     const blockTypes = ['avatar', 'info', 'stats', 'inventory', 'cyber-implants'];
     const type = prompt('Введите тип блока (avatar, info, stats, inventory, cyber-implants):');
-    if (!blockTypes.includes(type)) {
+    // Проверяем тип создаваемого блока на правильность
+	if (!blockTypes.includes(type)) {
         alert('Неверный тип блока!');
         return;
     }
@@ -202,10 +203,10 @@ function addNewBlock() {
     }
 }
 
-// Функция для удаления блока
+
 function removeBlock(blockId) {
     if (!editMode) return;
-    if (confirm('Вы уверены, что хотите удалить этот блок?')) {
+    if (confirm('Точно удалить этот блок?')) {
         blocks = blocks.filter(block => block.id !== blockId);
         localStorage.removeItem(blockId);
         saveBlocks();
@@ -213,7 +214,7 @@ function removeBlock(blockId) {
     }
 }
 
-// Функция для обновления аватарки
+
 function updateAvatar(blockId, input) {
     const block = blocks.find(b => b.id === blockId);
     const file = input.files[0];
@@ -228,7 +229,7 @@ function updateAvatar(blockId, input) {
     }
 }
 
-// Функция для редактирования полей
+
 function editField(blockId, field, index = null) {
     if (!editMode) return;
     const block = blocks.find(b => b.id === blockId);
@@ -244,7 +245,7 @@ function editField(blockId, field, index = null) {
     renderSheet();
 }
 
-// Функция для добавления элемента (предмета или импланта)
+// Добавление элемента в блок типа списка
 function addItem(blockId) {
     if (!editMode) return;
     const block = blocks.find(b => b.id === blockId);
@@ -258,7 +259,7 @@ function addItem(blockId) {
     }
 }
 
-// Функция для удаления элемента (предмета или импланта)
+// Удаление элемента из блока типа списка
 function removeItem(blockId, index) {
     if (!editMode) return;
     const block = blocks.find(b => b.id === blockId);
@@ -271,7 +272,7 @@ function removeItem(blockId, index) {
     }
 }
 
-// Функция для рендеринга всей карточки
+// Отрендерить всю карточку
 function renderSheet() {
     const sheet = document.getElementById('character-sheet');
     let html = '';
@@ -285,31 +286,31 @@ function renderSheet() {
     sheet.innerHTML = html;
 }
 
-// Функция для сохранения состояния
+// Сохранить текущее состояние
 function saveState() {
     localStorage.setItem('editMode', JSON.stringify(editMode));
     saveBlocks();
 }
 
-// Функция для загрузки состояния
+// Загрузить последнее сохранённое состояние
 function loadState() {
     const savedEditMode = localStorage.getItem('editMode');
     if (savedEditMode) {
         editMode = JSON.parse(savedEditMode);
     }
     loadBlocks();
-    renderHeader(); // Рендерим шапку
-    renderSheet(); // Рендерим карточку
+    renderHeader(); 
+    renderSheet(); 
 }
 
-// Функция для привязки событий
+// Костыль, без него кнопка редактирования срабатывает только один раз
 function bindEvents() {
     const editButton = document.getElementById('edit-mode-toggle');
     editButton.removeEventListener('click', toggleEditMode);
     editButton.addEventListener('click', toggleEditMode);
 }
 
-// Функция для переключения режима редактирования
+// Включить / выключить режим редактирования
 function toggleEditMode() {
     editMode = !editMode;
     renderHeader(); // Обновляем шапку, чтобы текст кнопки изменился
@@ -317,9 +318,9 @@ function toggleEditMode() {
     saveState();
 }
 
-// Сброс персонажа
+// Сброс карточки персонажа
 function resetCharacter() {
-    if (confirm('Вы уверены, что хотите сбросить персонажа? Все данные будут удалены.')) {
+    if (confirm('Точно сбросить персонажа? Все данные будут удалены.')) {
         localStorage.clear();
         blocks = [
             new AvatarBlock('avatar-block', { avatar: null }),
