@@ -1,0 +1,14 @@
+.avatar-block img {
+  width: auto;
+  height: 50px;
+  object-fit: cover;
+  border: 2px solid #808080;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.avatar-block input {
+  display: block;
+  margin-top: 10px;
+  color: #d3d3d3;
+}

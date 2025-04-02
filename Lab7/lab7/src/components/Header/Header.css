@@ -1,0 +1,35 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1a1a1a;
+  padding: 10px 20px;
+  border-bottom: 2px solid #808080;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  color: #ffffff;
+}
+
+.weather {
+  font-size: 0.9rem;
+  color: #d3d3d3;
+  margin-top: 5px;
+}
+
+.header-buttons button {
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  padding: 8px 15px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-family: 'Roboto Mono', monospace;
+  transition: background-color 0.3s ease;
+}
+
+.header-buttons button:hover {
+  background-color: #808080;
+}

@@ -1,0 +1,17 @@
+.add-block-btn {
+  display: block;
+  width: 100%;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+  font-family: 'Roboto Mono', monospace;
+  transition: background-color 0.3s ease;
+}
+
+.add-block-btn:hover {
+  background-color: #808080;
+}
